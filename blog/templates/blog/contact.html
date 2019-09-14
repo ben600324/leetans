@@ -1,0 +1,77 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Contact - {{ block.super }}{% endblock %}
+{% block hero_section %}
+<section class="page-top-section set-bg" data-setbg="{% static 'blog/img/page-top-bg.jpg' %}">
+<div class="container">
+    <h2>Contact</h2>
+</div>
+</section>
+{% endblock hero_section %}
+
+{% block contact_form %}
+<section class="contact-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="contact-form-warp">
+						<h4>Contact Us</h4>
+						<form class="contact-form" role="form" action="{% url 'blog-contact' %}" method="post">
+                            {% csrf_token %}
+							<div class="row">
+								<div class="col-md-6">
+                                    {{ form.name }}
+								</div>
+								<div class="col-md-6">
+                                    {{ form.email }}
+								</div>
+								<div class="col-md-12">
+                                    {{ form.subject }}
+                                    {{ form.message }}
+									<button class="site-btn" type="submit">Send Message</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="contact-logo">
+						<img src="{% static 'blog/img/logo.png' %}" alt="">
+					</div>
+					<div class="contact-info">
+						<ul class="ct-list">
+							<li>
+								<h6>Address:</h6>
+								<p>481 Haig Court</p>
+								<p>Chelmsford</p>
+								<p>CM2 0BH</p>
+							</li>
+							<li>
+								<h6>Phone:</h6>
+								<p>01245 7953 32453</p>
+								<p>01245 7557 82245</p>
+							</li>
+							<li>
+								<h6>Email:</h6>
+								<p>sales@leetans.com</p>
+							</li>
+						</ul>
+						<div class="contact-social">
+							<a href="#"><i class="fa fa-pinterest"></i></a>
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-dribbble"></i></a>
+							<a href="#"><i class="fa fa-behance"></i></a>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- map -->
+			<div class="location-map" id="map-canvas">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2471.2668314000625!2d0.4604335159127919!3d51.72815470235911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8ebcd8f193e35%3A0xab96d4c9292dc795!2sHaig+Ct%2C+Chelmsford+CM2+0BH!5e0!3m2!1sen!2suk!4v1548539720553" width="1146" height="579" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>	
+		</div>
+	</section>
+{% endblock contact_form %}

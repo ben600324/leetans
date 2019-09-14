@@ -1,0 +1,197 @@
+{% extends "blog/base.html" %}
+
+<!-- Hero section -->
+{% block hero_section %}
+<section class="hero-section">
+    <div class="hero-slider owl-carousel">
+        {% for carousel in carousels %}
+        <div class="hero-slide-item set-bg" data-setbg="{{ carousel.image.url }}">
+            <div class="hs-text">
+                <h2 class="hs-title-1"><span>{{ carousel.title_1 }}</span></h2>
+                <h2 class="hs-title-2"><span>{{ carousel.title_2 }}</span></h2>
+                <h2 class="hs-title-3"><span>{{ carousel.title_3 }}</span></h2>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<!-- Hero section end -->
+{% endblock hero_section %}
+
+<!-- Add section end -->
+{% block amazing_deserts %}
+<section class="add-section spad">
+    <div class="container">
+        <div class="add-warp">
+            <div class="add-slider owl-carousel">
+                <div class="as-item set-bg" data-setbg=""></div>
+                <div class="as-item set-bg" data-setbg=""></div>
+                <div class="as-item set-bg" data-setbg=""></div>
+            </div>
+            <div class="row add-text-warp">
+                <div class="col-lg-4 col-md-5 offset-lg-8 offset-md-7">
+                    <div class="add-text text-white">
+                        <div class="at-style"></div>
+                        <h2>Amazing deserts</h2>
+                        <ul>
+                            <li>Easy to make</li>
+                            <li>Step by Step Video Tutorial</li>
+                            <li>Gluten Free</li>
+                            <li>Healty  Ingredients</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock amazing_deserts %}
+<!-- Add section end -->
+
+{% block two_featured %}
+<section class="review-section">
+		<div class="container">
+			<div class="row">
+                {% for post in posts_two %}
+                    <div class="col-lg-6 col-md-8 offset-lg-0 offset-md-2">
+                        <div class="review-item">
+                            <div class="review-thumb set-bg" data-setbg="{{ post.image.url }}">
+                                <div class="review-date">
+                                    <span>{{ post.date_posted|date:"F d, Y" }}</span>
+                                </div>
+                            </div>
+                            <div class="review-text">
+                                <span>{{ post.date_posted|date:"F d, Y" }}</span>
+                                <h6>{{ post.title }}</h6>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star is-fade"></i>
+                                </div>
+                                <div class="author-meta">
+                                    <div class="author-pic set-bg" data-setbg="{{ post.author.profile.image.url }}"></div>
+                                    <p>By {{ post.author }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+</section>
+{% endblock two_featured %}
+
+{% block latest_recipes %}
+<section class="recipes-section spad pt-0">
+		<div class="container">
+			<div class="section-title">
+				<h2>Latest recipes</h2>
+			</div>
+			<div class="row">
+                {% for latest_recipe in latest_recipes %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="recipe">
+                            <img src="{{ latest_recipe.image.url }}" alt="">
+                            <div class="recipe-info-warp">
+                                <div class="recipe-info">
+                                    <h3>{{ latest_recipe.title }}</h3>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star is-fade"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+</section>
+{% endblock latest_recipes %}
+
+<!-- Footer widgets section -->
+{% block footer_widgets %}
+<section class="bottom-widgets-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 ftw-warp">
+                <div class="section-title">
+                    <h3>Top rated recipes</h3>
+                </div>
+                <ul class="sp-recipes-list">
+                    <!-- Top recipes -->
+                    {% for top_recipe in top_recipes %}
+                        <li>
+                            <div class="rl-thumb set-bg" data-setbg="{{ top_recipe.image.url }}"></div>
+                            <div class="rl-info">
+                                <span>{{ top_recipe.date_posted|date:"F d, Y" }}</span>
+                                <h6>{{ top_recipe.title }}</h6>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star is-fade"></i>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    <!-- Top recipes end -->
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 ftw-warp">
+                <div class="section-title">
+                    <h3>Most liked recipes</h3>
+                </div>
+                <ul class="sp-recipes-list">
+                    <!-- Most liked recipes -->
+                    {% for most_liked_recipe in most_liked_recipes %}
+                        <li>
+                            <div class="rl-thumb set-bg" data-setbg="{{ most_liked_recipe.image.url }}"></div>
+                            <div class="rl-info">
+                                <span>{{ most_liked_recipe.date_posted|date:"F d, Y" }}</span>
+                                <h6>{{ most_liked_recipe.title }}</h6>
+                                <div class="rating">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star is-fade"></i>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    <!-- Most liked recipes -->
+                </ul>
+            </div>
+            <!-- Post featured-->
+            {% for post in posts_one %}
+                <div class="col-lg-4">
+                    <div class="sp-blog-item">
+                        <div class="blog-thubm">
+                            <img src="{{ post.image.url }}" alt="">
+                            <div class="blog-date">
+                                <span>{{ post.date_posted|date:"F d, Y" }}</span>
+                            </div>
+                        </div>
+                        <div class="blog-text">
+                            <h5>{{ post.title }}</h5>
+                            <span>By {{ post.author }}</span>
+                            <p>{{ post.content }}</p>
+                            <a href="#" class="comment">2 Comments</a>
+                            <a href="#" class="readmore"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <!-- Post featured end-->
+        </div>
+    </div>
+</section>
+{% endblock footer_widgets %}
+<!-- Footer widgets section end -->

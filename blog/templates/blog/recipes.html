@@ -1,0 +1,93 @@
+{% extends "blog/base.html" %}
+{% load static %}
+<!-- Hero section -->
+{% block hero_section %}
+<section class="page-top-section set-bg" data-setbg="{% static 'blog/img/page-top-bg.jpg' %}">
+<div class="container">
+    <h2>Recipes</h2>
+</div>
+</section>
+{% endblock hero_section %}
+<!-- Hero section end -->
+
+<!-- Search section -->
+{% block search_section %}
+<div class="search-form-section">
+    <div class="sf-warp">
+        <div class="container">
+            <form class="big-search-form">
+                <select>
+                    <option>All Recipes Categories</option>
+                    <option>Pizza</option>
+                    <option>Salads</option>
+                    <option>Desserts</option>
+                    <option>Side Dishes</option>
+                </select>
+                <select>
+                    <option>All Ingredients</option>
+                    <option>Breakfast</option>
+                    <option>Lunch</option>
+                    <option>Dinner</option>
+                </select>
+                <input type="text" placeholder="Search Receipies">
+                <button class="bsf-btn">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock search_section %}
+<!-- Search section end -->
+
+<!-- Recipes section -->
+{% block recipes_section %}
+<section class="recipes-page spad">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="section-title">
+                <h2>Latest recipes</h2>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="recipe-view">
+                <i class="fa fa-bars"></i>
+                <i class="fa fa-th active"></i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for all_recipe in all_recipes %}
+        <div class="col-lg-4 col-md-6">
+            <div class="recipe">
+                <img src="{{ all_recipe.image.url }}" alt="">
+                <div class="recipe-info-warp">
+                    <div class="recipe-info">
+                        <h3>{{ all_recipe.title }}</h3>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star is-fade"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="site-pagination">
+    {% if is_paginated %}
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <span>{{ num }}</span>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    </div>
+</div>
+</section>
+{% endblock recipes_section %}
+<!-- Recipes section end -->
